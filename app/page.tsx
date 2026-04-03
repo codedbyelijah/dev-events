@@ -2,8 +2,11 @@ import EventCard from "@/components/event-card";
 import ExploreBtn from "@/components/explore-btn";
 import { IEvent } from "@/database";
 import { BASE_URL } from "@/lib/constant";
+import { cacheLife } from "next/cache";
 
 export default async function Home() {
+  "use cache";
+  cacheLife("hours");
   const res = await fetch(`${BASE_URL}/api/events`);
   const { events } = await res.json();
   return (
