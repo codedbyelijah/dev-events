@@ -1,10 +1,10 @@
 import mongoose from "mongoose";
 
-const MONGODB_URI = process.env.MONGODB_URI;
+const MONGODB_URI = process.env.MONGODB_URI!;
 
 if (!MONGODB_URI) {
   throw new Error(
-    "Please define the MONGODB_URI environment variable in .env.local"
+    "Please define the MONGODB_URI environment variable in .env.local",
   );
 }
 
@@ -34,7 +34,10 @@ declare global {
  *
  * In production the module is loaded once, so this simply acts as a singleton.
  */
-const cached: MongooseCache = global.mongooseCache ?? { conn: null, promise: null };
+const cached: MongooseCache = global.mongooseCache ?? {
+  conn: null,
+  promise: null,
+};
 global.mongooseCache = cached;
 
 /**
