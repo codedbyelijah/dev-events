@@ -1,6 +1,7 @@
-ignoredBuiltDependencies:
+onlyBuiltDependencies:
+  - '@sentry/cli'
+  - core-js
+  - msw
+  - protobufjs
   - sharp
   - unrs-resolver
-onlyBuiltDependencies:
-  - core-js
-  - protobufjs
