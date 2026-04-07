@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import { MongoClient } from "mongodb";
 
 const MONGODB_URI = process.env.MONGODB_URI!;
 
@@ -23,7 +24,6 @@ interface MongooseCache {
  * Using `var` (not `let`/`const`) is required for global augmentation.
  */
 declare global {
-  // eslint-disable-next-line no-var
   var mongooseCache: MongooseCache | undefined;
 }
 
@@ -61,4 +61,23 @@ export async function connectToDatabase(): Promise<typeof mongoose> {
   // Await the in-flight promise (shared across concurrent callers).
   cached.conn = await cached.promise;
   return cached.conn;
+}
+
+let cachedClient: MongoClient | null = null;
+let cachedPromise: Promise<MongoClient> | null = null;
+
+/**
+ * Returns a connected MongoClient instance.
+ * Uses caching to avoid creating multiple connections in development.
+ */
+export async function getMongoClient(): Promise<MongoClient> {
+  if (cachedClient) return cachedClient; // return cached client
+
+  if (!cachedPromise) {
+    const client = new MongoClient(MONGODB_URI);
+    cachedPromise = client.connect();
+  }
+
+  cachedClient = await cachedPromise;
+  return cachedClient;
 }
