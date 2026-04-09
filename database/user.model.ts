@@ -87,7 +87,6 @@ UserSchema.pre("save", async function () {
 });
 
 // Create indexes for better performance
-UserSchema.index({ email: 1 }, { unique: true });
 UserSchema.index({ provider: 1 });
 
 // Method to compare passwords for credentials authentication

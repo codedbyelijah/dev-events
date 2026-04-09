@@ -92,7 +92,7 @@ export default function Navbar() {
           </button>
 
           {/* Logo - centered on mobile, left on desktop */}
-          <div className="absolute left-1/2 transform -translate-x-1/2 md:relative md:left-auto md:transform-none">
+          <div className="absolute left-1/2 transform -translate-x-1/2  md:relative md:left-auto md:transform-none">
             <Link href="/" className="logo flex items-center gap-2">
               <Image src="/icons/logo.png" alt="logo" width={24} height={24} />
               <span className="text-xl font-bold text-white">DevEvent</span>

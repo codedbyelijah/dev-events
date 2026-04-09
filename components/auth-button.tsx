@@ -38,7 +38,7 @@ export default function AuthButton() {
       <div className="relative">
         <button
           onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-          className="flex items-center space-x-2 p-2 rounded-full hover:bg-white/10 transition-colors"
+          className="flex items-center space-x-2 p-2 rounded-full hover:bg-white/10 transition-colors cursor-pointer"
         >
           <div className="w-10 h-10 bg-linear-to-br from-[#5dfeca] to-teal-600 rounded-full flex items-center justify-center text-white font-semibold">
             {user?.image ? (
@@ -139,7 +139,7 @@ export default function AuthButton() {
   return (
     <Link
       href="/login"
-      className="px-10 py-2 text-sm font-medium text-white bg-white/5 backdrop-blur-md border border-white/20 rounded-md hover:bg-white/10 transition-colors"
+      className="px-10 py-2 text-sm font-medium text-white bg-white/5 backdrop-blur-md border border-white/20 rounded-full hover:bg-white/10 transition-colors cursor-pointer"
     >
       Sign in
     </Link>
